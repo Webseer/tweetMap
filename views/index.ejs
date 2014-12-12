@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Twitter Feed Map</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylesheets/leaflet.css"/>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css"/>
+    <script src="javascripts/jquery-1.9.1.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+
+    <style type="text/css">
+
+      #map 
+      {
+        width: 1349px;
+        height: 800px;
+        /*margin-top: 0.2%;*/
+      }
+
+      .country
+      {
+        height: 40px;
+        border: 1px solid black;
+        background: #000;
+        color: #fff;
+      }
+      #menu
+      {
+        text-align: center;
+      }
+
+      #menu ul
+      {
+        list-style: none;
+      }
+
+      #menu li
+      {
+        display: inline;
+        border-right: 1px solid #fff;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid country">
+        <div id="menu" style="margin-top:1%;">
+          <ul>
+          <% for(i=0;i<tracks.length;i++){%>
+            <li style="color:<%=colorMap[tracks[i]]%>;"><%=tracks[i]%>&nbsp;</li>
+          <% } %>
+          </ul>
+        </div>
+    </div>
+
+    <!-- <div class="container-fluid"> -->
+        <div id="map"></div>
+    <!-- </div>    -->
+    <script type="text/javascript">
+      var tracks = <%-JSON.stringify(tracks)%>;
+      var colorMap = <%-JSON.stringify(colorMap)%>;
+    </script>
+    <script src="javascripts/d3.v3.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/leaflet.js"></script>
+    <script src="/socketScript-mapD3.js"></script>
+</body>
+</html>
